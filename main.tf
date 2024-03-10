@@ -1,55 +1,54 @@
 # Networking for Application
 # Create VPC
 resource "aws_vpc" "Grace_IT" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block       = var.vpc_cidr
   instance_tenancy = "default"
-  enable_dns_hostnames = true
+  enable_dns_hostnames = var.enable_dns_hostnames
 
   tags = {
-    Name = "Grace_IT"
-    env = "prod"
+    Name = var.Project_name
+    env = var.env
   }
 }
 
 # Create 2 public subnets
 resource "aws_subnet" "Prod-pub-sub1" {
   vpc_id = aws_vpc.Grace_IT.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.Public_subnet_cidr_1
 
   tags = {
     Name = "Prod-pub-sub1"
-    env = "prod"
+    env = var.env
   }
 }
 
 resource "aws_subnet" "Prod-pub-sub2" {
   vpc_id = aws_vpc.Grace_IT.id
-  cidr_block = "10.0.2.0/24"
+  cidr_block = var.Public_subnet_cidr_2
 
   tags = {
     Name = "Prod-pub-sub2"
-    env = "prod"
+    env = var.env
   }
 }
 
 # Create 2 private subnets
 resource "aws_subnet" "Prod-priv-sub1" {
   vpc_id = aws_vpc.Grace_IT.id
-  cidr_block = "10.0.3.0/24"
+  cidr_block = var.Private_subnet_cidr_1
 
   tags = {
     Name = "Prod-priv-sub1"
-    env = "prod"
+    env = var.env
   }
 }
 
 resource "aws_subnet" "Prod-priv-sub2" {
   vpc_id = aws_vpc.Grace_IT.id
-  cidr_block = "10.0.4.0/24"
-
+  cidr_block = var.Private_subnet_cidr_2
   tags = {
     Name = "Prod-priv-sub2"
-    env = "prod"
+    env = var.env
   }
 }
 
@@ -58,13 +57,13 @@ resource "aws_route_table" "Prod-pub-route-table" {
   vpc_id = aws_vpc.Grace_IT.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.gateway_cidr
     gateway_id =aws_internet_gateway.Prod-igw.id
   }
 
   tags = {
     Name = "Grace_IT"
-    env = "prod"
+    env = var.env
   }
 }
 
@@ -73,13 +72,13 @@ resource "aws_route_table" "Prod-priv-route-table" {
   vpc_id = aws_vpc.Grace_IT.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.gateway_cidr
     gateway_id =aws_nat_gateway.Prod-Nat-gateway.id
   }
 
   tags = {
     Name = "Grace_IT"
-    env = "prod"
+    env = var.env
   }
 }
 
@@ -110,7 +109,7 @@ resource "aws_internet_gateway" "Prod-igw" {
 
   tags = {
     Name = "Grace_IT"
-    env = "prod"
+    env = var.env
   }
 }
 
@@ -126,6 +125,7 @@ resource "aws_nat_gateway" "Prod-Nat-gateway" {
 
   tags = {
     Name = "Prod-Nat-gateway"
+    env = var.env
   }
 }
 
