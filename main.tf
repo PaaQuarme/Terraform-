@@ -2,12 +2,12 @@
 # Create VPC
 resource "aws_vpc" "Grace_IT" {
   cidr_block       = var.vpc_cidr
-  instance_tenancy = "default"
+  instance_tenancy = var.instance_tenancy
   enable_dns_hostnames = var.enable_dns_hostnames
 
   tags = {
     Name = var.Project_name
-    env = var.env
+    env = "prod"
   }
 }
 
@@ -18,9 +18,9 @@ resource "aws_subnet" "Prod-pub-sub1" {
 
   tags = {
     Name = "Prod-pub-sub1"
-    env = var.env
+    env = "prod"
   }
-}
+}  
 
 resource "aws_subnet" "Prod-pub-sub2" {
   vpc_id = aws_vpc.Grace_IT.id
@@ -28,7 +28,7 @@ resource "aws_subnet" "Prod-pub-sub2" {
 
   tags = {
     Name = "Prod-pub-sub2"
-    env = var.env
+    env = "prod"
   }
 }
 
@@ -39,7 +39,7 @@ resource "aws_subnet" "Prod-priv-sub1" {
 
   tags = {
     Name = "Prod-priv-sub1"
-    env = var.env
+    env = "prod"
   }
 }
 
@@ -48,7 +48,7 @@ resource "aws_subnet" "Prod-priv-sub2" {
   cidr_block = var.Private_subnet_cidr_2
   tags = {
     Name = "Prod-priv-sub2"
-    env = var.env
+    env = "prod"
   }
 }
 
@@ -62,8 +62,8 @@ resource "aws_route_table" "Prod-pub-route-table" {
   }
 
   tags = {
-    Name = "Grace_IT"
-    env = var.env
+    Name = "Prod-pub-route-table"
+    env = "prod"
   }
 }
 
@@ -77,8 +77,8 @@ resource "aws_route_table" "Prod-priv-route-table" {
   }
 
   tags = {
-    Name = "Grace_IT"
-    env = var.env
+    Name = "Prod-priv-route-table"
+    env = "prod"
   }
 }
 
@@ -108,8 +108,8 @@ resource "aws_internet_gateway" "Prod-igw" {
   vpc_id = aws_vpc.Grace_IT.id
 
   tags = {
-    Name = "Grace_IT"
-    env = var.env
+    Name = "Prod-igw"
+    env = "prod"
   }
 }
 
@@ -125,7 +125,7 @@ resource "aws_nat_gateway" "Prod-Nat-gateway" {
 
   tags = {
     Name = "Prod-Nat-gateway"
-    env = var.env
+    env = "prod"
   }
 }
 
