@@ -47,7 +47,7 @@ variable "gateway_cidr" {
 }
 
 variable "instance_tenancy" {
-  type = bool
+  type = string
   description = "variable for my instance tenancy"
   default = "default"
 }
