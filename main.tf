@@ -15,6 +15,7 @@ resource "aws_vpc" "Grace_IT" {
 resource "aws_subnet" "Prod-pub-sub1" {
   vpc_id = aws_vpc.Grace_IT.id
   cidr_block = var.Public_subnet_cidr_1
+  availability_zone = var.availability_zone_1
 
   tags = {
     Name = "Prod-pub-sub1"
@@ -25,6 +26,7 @@ resource "aws_subnet" "Prod-pub-sub1" {
 resource "aws_subnet" "Prod-pub-sub2" {
   vpc_id = aws_vpc.Grace_IT.id
   cidr_block = var.Public_subnet_cidr_2
+  availability_zone = var.availability_zone_2
 
   tags = {
     Name = "Prod-pub-sub2"
@@ -36,6 +38,7 @@ resource "aws_subnet" "Prod-pub-sub2" {
 resource "aws_subnet" "Prod-priv-sub1" {
   vpc_id = aws_vpc.Grace_IT.id
   cidr_block = var.Private_subnet_cidr_1
+  availability_zone = var.availability_zone_1
 
   tags = {
     Name = "Prod-priv-sub1"
@@ -46,6 +49,8 @@ resource "aws_subnet" "Prod-priv-sub1" {
 resource "aws_subnet" "Prod-priv-sub2" {
   vpc_id = aws_vpc.Grace_IT.id
   cidr_block = var.Private_subnet_cidr_2
+  availability_zone = var.availability_zone_2
+
   tags = {
     Name = "Prod-priv-sub2"
     env = "prod"

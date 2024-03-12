@@ -40,6 +40,18 @@ variable "Private_subnet_cidr_2" {
   default = "10.0.4.0/24"
 }
 
+variable "availability_zone_1" {
+  type = string
+  description = "variable for my availability_zone_1"
+  default = "eu-west-2a"
+}
+
+variable "availability_zone_2" {
+  type = string
+  description = "variable for my availability_zone_"
+  default = "eu-west-2b"
+}
+
 variable "gateway_cidr" {
   type = string
   description = "variable for my gateway"
