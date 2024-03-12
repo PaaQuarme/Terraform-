@@ -48,7 +48,7 @@ variable "availability_zone_1" {
 
 variable "availability_zone_2" {
   type = string
-  description = "variable for my availability_zone_"
+  description = "variable for my availability_zone_2"
   default = "eu-west-2b"
 }
 
