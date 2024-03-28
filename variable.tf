@@ -1,8 +1,4 @@
-variable "region" {
-  type = string
-  description = "variable for my region"
-  default = "eu-west-2"
-}
+variable "region" {}
 
 variable "Project_name" {
   type = string
@@ -40,17 +36,9 @@ variable "Private_subnet_cidr_2" {
   default = "10.0.4.0/24"
 }
 
-variable "availability_zone_1" {
-  type = string
-  description = "variable for my availability_zone_1"
-  default = "eu-west-2a"
-}
+variable "availability_zone_1" {}
 
-variable "availability_zone_2" {
-  type = string
-  description = "variable for my availability_zone_2"
-  default = "eu-west-2b"
-}
+variable "availability_zone_2" {}
 
 variable "gateway_cidr" {
   type = string
