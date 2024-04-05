@@ -3,7 +3,7 @@ variable "region" {}
 variable "Project_name" {
   type = string
   description = "variable for my Project name"
-  default = "GraceIT"
+  default = "Grace_IT"
 }
 
 variable "vpc_cidr" {
