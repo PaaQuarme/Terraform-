@@ -133,4 +133,3 @@ resource "aws_nat_gateway" "Prod-Nat-gateway" {
     env = "prod"
   }
 }
-
